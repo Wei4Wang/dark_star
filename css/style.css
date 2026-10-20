@@ -1,0 +1,100 @@
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#000;overflow:hidden}
+body{
+  font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+  color:#e8e4dc;-webkit-font-smoothing:antialiased;user-select:none;cursor:default;
+}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#000;overflow:hidden}
+#frame{
+  position:relative;
+  width:min(100vw, 177.78vh);
+  height:min(56.25vw, 100vh);
+  font-size:min(1vw, 1.7778vh);
+  background:#03050a;
+  box-shadow:0 0 8em rgba(0,0,0,.9);
+}
+#game{display:block;width:100%;height:100%}
+#ui{position:absolute;inset:0;pointer-events:none}
+
+.screen{
+  position:absolute;inset:0;display:none;align-items:center;justify-content:center;
+  background:radial-gradient(ellipse at center, rgba(4,7,14,.82) 0%, rgba(0,0,0,.94) 70%);
+  pointer-events:auto;opacity:0;transition:opacity .7s ease;
+}
+.screen.active{display:flex;opacity:1}
+.screen.fade{opacity:0}
+
+h1{
+  font-family:"Songti SC","STSong","SimSun","Noto Serif SC",serif;
+  font-size:7.6em;font-weight:400;letter-spacing:.22em;text-indent:.22em;
+  color:#f2e9d8;text-shadow:0 0 2.4em rgba(245,217,160,.35);
+}
+h2{
+  font-family:"Songti SC","STSong","SimSun","Noto Serif SC",serif;
+  font-size:4.6em;font-weight:400;letter-spacing:.3em;text-indent:.3em;color:#efe6d6;
+}
+h3{font-size:2.2em;font-weight:400;letter-spacing:.3em;margin-bottom:1.4em;color:#cfc7ba}
+
+.title-block{text-align:center}
+.en{
+  font-size:1.05em;letter-spacing:.62em;text-indent:.62em;color:#7d8797;
+  margin-top:.7em;margin-bottom:3.4em;
+}
+.tagline{font-size:1.5em;line-height:2.1;color:#b9b2a6;letter-spacing:.09em;margin-bottom:3.6em}
+
+.btns{display:flex;gap:1.6em;justify-content:center;flex-wrap:wrap}
+button{
+  font-family:inherit;font-size:1.35em;letter-spacing:.28em;text-indent:.28em;
+  color:#e9e1d2;background:transparent;border:.6px solid rgba(232,222,205,.32);
+  padding:.85em 2.6em;border-radius:2px;cursor:pointer;transition:all .28s ease;
+  pointer-events:auto;
+}
+button:hover{border-color:rgba(245,217,160,.8);color:#fff6e4;background:rgba(245,217,160,.07)}
+button.ghost{color:#9aa2b0;border-color:rgba(150,160,175,.25)}
+button.ghost:hover{color:#e8e4dc;border-color:rgba(220,214,200,.55)}
+button.mini{font-size:.9em;padding:.2em .9em;letter-spacing:.1em;text-indent:0}
+
+.keys{margin-top:4.2em;font-size:.95em;color:#5e6675;line-height:2.2;letter-spacing:.06em}
+.keys span{color:#9aa3b2}
+.keys.small{margin-top:2.2em;font-size:.9em;line-height:2}
+.keys span.hi{color:#d8b878}
+
+.chapter-row{display:flex;gap:1em;justify-content:center;margin-top:2.2em;min-height:0;flex-wrap:wrap}
+.chapter-row button{font-size:1em;padding:.5em 1.2em;letter-spacing:.1em;text-indent:0}
+.chapter-row button.locked{opacity:.28;cursor:not-allowed}
+
+.chapter-block{text-align:center;opacity:0;animation:chIn 2.6s ease forwards}
+.chno{font-size:1.1em;letter-spacing:.5em;text-indent:.5em;color:#7b8494;margin-bottom:1.4em}
+.chsub{margin-top:1.6em;font-size:1.05em;letter-spacing:.32em;color:#6f7787}
+@keyframes chIn{
+  0%{opacity:0;transform:translateY(1.2em)}
+  22%{opacity:1;transform:translateY(0)}
+  76%{opacity:1}
+  100%{opacity:0}
+}
+
+.letter-block{max-width:52em;text-align:center;padding:0 3em}
+.letter-block p{
+  font-family:"Songti SC","STSong","SimSun","Noto Serif SC",serif;
+  font-size:1.95em;line-height:2.35;color:#ded5c4;letter-spacing:.14em;
+  white-space:pre-line;
+}
+.letter-block button{margin-top:3.4em}
+
+.pause-block{text-align:center}
+
+.end-block{text-align:center;max-width:54em;padding:0 3em}
+.endtag{font-size:1em;letter-spacing:.5em;text-indent:.5em;color:#6d7688;margin-bottom:2.4em}
+.endtext{
+  font-family:"Songti SC","STSong","SimSun","Noto Serif SC",serif;
+  font-size:1.5em;line-height:2.4;color:#c3bbae;letter-spacing:.12em;margin-top:2.2em;white-space:pre-line;
+}
+.endstat{margin-top:3em;font-size:.95em;color:#5a6270;letter-spacing:.18em}
+.end-block button{margin-top:3.4em}
+
+.hint{
+  position:absolute;left:0;right:0;bottom:4.5em;text-align:center;
+  font-size:1.05em;letter-spacing:.28em;color:rgba(200,208,220,.5);
+  opacity:0;transition:opacity 1.2s ease;pointer-events:none;
+}
+.hint.show{opacity:1}

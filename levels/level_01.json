@@ -1,0 +1,120 @@
+{
+  "id": "L01",
+  "name": "引力",
+  "chapter": 1,
+  "version": 1,
+  "duration": 180,
+  "world": {
+    "width": 24000,
+    "height": 1400,
+    "spawn": [120, 900],
+    "ceiling": 1320,
+    "floor": 160
+  },
+  "camera": {
+    "follow": 0.12,
+    "lookAhead": 0.18,
+    "zoomOutDistance": 600,
+    "maxZoomOut": 0.92,
+    "bounds": [0, 0, 24000, 1400]
+  },
+  "her": {
+    "radius": 320,
+    "trailLife": 0.8,
+    "trailLifeInCloud": 2.5,
+    "despawnAt": 134,
+    "path": [
+      { "t": 0,   "x": 700,   "y": 880, "ease": "sine" },
+      { "t": 12,  "x": 1600,  "y": 800, "ease": "sine" },
+      { "t": 24,  "x": 2500,  "y": 900, "ease": "sine" },
+      { "t": 36,  "x": 3300,  "y": 740, "ease": "sine" },
+      { "t": 48,  "x": 4400,  "y": 860, "ease": "sine" },
+      { "t": 58,  "x": 5600,  "y": 720, "ease": "sine" },
+      { "t": 68,  "x": 6700,  "y": 820, "ease": "sine", "dwell": 0.8, "facing": "player" },
+      { "t": 80,  "x": 8300,  "y": 700, "ease": "sine" },
+      { "t": 90,  "x": 9600,  "y": 880, "ease": "sine" },
+      { "t": 100, "x": 11000, "y": 760, "ease": "sine" },
+      { "t": 110, "x": 12500, "y": 900, "ease": "sine" },
+      { "t": 118, "x": 13700, "y": 800, "ease": "sine" },
+      { "t": 126, "x": 15200, "y": 860, "ease": "sine" },
+      { "t": 134, "x": 16800, "y": 740, "ease": "sine" }
+    ]
+  },
+  "zones": [
+    {
+      "id": "dust_field",
+      "type": "dust",
+      "rect": [0, 0, 24000, 1400],
+      "count": 2600,
+      "parallax": 0.35,
+      "speedRange": [8, 20],
+      "active": true
+    },
+    {
+      "id": "cloud_a",
+      "type": "cloud",
+      "rect": [13400, 150, 5200, 1200],
+      "opacity": 0.9,
+      "layers": 4,
+      "fadeIn": 3.0,
+      "fadeOut": 5.0,
+      "occludeHer": 0.85,
+      "active": false
+    }
+  ],
+  "audio": [
+    { "id": "amb_void" },
+    { "id": "her_theme_1" },
+    { "id": "player_theme_alone" },
+    { "id": "wind_soft" },
+    { "id": "wind_cloud" },
+    { "id": "chime_enter_light" },
+    { "id": "lookback_sting" }
+  ],
+  "events": [
+    { "at": { "t": 0 },   "type": "fade_in", "dur": 2.5 },
+    { "at": { "t": 0.3 }, "type": "music_layer", "layer": "amb_void", "gain": 1.0, "fade": 1.5 },
+    { "at": { "t": 0.8 }, "type": "sfx", "id": "wind_soft", "gain": 0.5 },
+
+    { "at": { "on": "first_within_R" }, "type": "music_layer", "layer": "her_theme_1", "gain": 0.55, "fade": 2.0 },
+    { "at": { "on": "first_within_R" }, "type": "vfx", "id": "light_ripple", "anchor": "her" },
+    { "at": { "on": "first_within_R" }, "type": "sfx", "id": "chime_enter_light", "gain": 0.7 },
+
+    { "at": { "t": 45 }, "if": "no_contact", "type": "tutorial_gate", "speedMul": 0.7, "hint": true },
+
+    { "at": { "t": 68 }, "type": "look_back", "dur": 2.0, "angle": 0.35 },
+    { "at": { "t": 68 }, "type": "vfx", "id": "lookback_flash" },
+    { "at": { "t": 68 }, "type": "sfx", "id": "lookback_sting", "gain": 0.4 },
+
+    { "at": { "t": 100 }, "type": "zone_fade", "id": "cloud_a", "dir": "in", "dur": 3.0 },
+    { "at": { "t": 100 }, "type": "sfx", "id": "wind_cloud", "gain": 0.6 },
+    { "at": { "t": 100 }, "type": "her_trail", "life": 2.5 },
+
+    { "at": { "t": 118 }, "type": "her_speed", "mul": 1.35 },
+    { "at": { "t": 126 }, "type": "her_fade", "dur": 2.0 },
+    { "at": { "t": 134 }, "type": "her_despawn" },
+
+    { "at": { "t": 142 }, "type": "zone_fade", "id": "cloud_a", "dir": "out", "dur": 5.0 },
+
+    { "at": { "t": 150 }, "type": "music_layer", "layer": "amb_void", "gain": 0.4, "fade": 3.0 },
+    { "at": { "t": 150 }, "type": "music_layer", "layer": "her_theme_1", "gain": 0.15, "fade": 3.0 },
+    { "at": { "t": 150 }, "type": "music_layer", "layer": "player_theme_alone", "gain": 0.35, "fade": 4.0 },
+
+    { "at": { "t": 168 }, "type": "letter",
+      "lines": ["今天她转过来了一下。", "我知道不是看我。", "但我还是，停了两秒。"],
+      "in": 1.2, "hold": 3.0, "out": 1.5 },
+
+    { "at": { "t": 176 }, "type": "fade_out", "dur": 4.0 },
+    { "at": { "t": 180 }, "type": "end" },
+
+    { "at": { "cond": "dist_gt", "value": 700, "hold": 2.5 }, "type": "her_speed", "mul": 0.85, "dur": 4.0 },
+    { "at": { "cond": "no_ascent", "value": 8.0 }, "type": "her_breath" },
+    { "at": { "cond": "player_recovering" }, "type": "her_pause", "dur": 2.0 }
+  ],
+  "acceptance": {
+    "firstLiftWithinSec": 90,
+    "noDeath": true,
+    "noText": true,
+    "fpsTarget": 60
+  }
+}

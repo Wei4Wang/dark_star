@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>星之暗面 · Dark Side of the Star</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="stage">
+  <div id="frame">
+    <canvas id="game" width="1600" height="900"></canvas>
+    <div id="ui">
+
+      <div id="screenTitle" class="screen active">
+        <div class="title-block">
+          <h1>星之暗面</h1>
+          <p class="en">DARK SIDE OF THE STAR</p>
+          <p class="tagline">你是一颗发不出光的星，<br>爱上了一颗不需要你的星。</p>
+          <div class="btns">
+            <button id="btnStart">开始</button>
+            <button id="btnChapters" class="ghost">章节选择</button>
+          </div>
+          <div id="chapterRow" class="chapter-row"></div>
+          <p class="keys">
+            <span>A / D</span> 移动　<span>W</span> 减缓下坠　<span>S</span> 加速下坠<br>
+            <span>左键</span> 凝视　<span>右键 / Shift</span> 献出光　<span>Esc</span> 暂停
+          </p>
+          <p class="keys small">
+            前四章左上角是生命条：撞上流星、被她看穿、摔进雾里都会掉血，掉光这一章重来。<br>
+            第五章没有血：要集齐 <span class="hi">100 颗星</span>，<span class="hi">死一次整关从头开始</span>。
+          </p>
+        </div>
+      </div>
+
+      <div id="screenChapter" class="screen">
+        <div class="chapter-block">
+          <p class="chno">第<span id="chNum">一</span>章</p>
+          <h2 id="chName">引力</h2>
+          <p id="chSub" class="chsub"></p>
+        </div>
+      </div>
+
+      <div id="screenLetter" class="screen">
+        <div class="letter-block">
+          <p id="letterText"></p>
+          <button id="btnLetter" class="ghost">继续</button>
+        </div>
+      </div>
+
+      <div id="screenPause" class="screen">
+        <div class="pause-block">
+          <h3>暂停</h3>
+          <div class="btns">
+            <button id="btnResume">继续</button>
+            <button id="btnRestart" class="ghost">重开本章</button>
+            <button id="btnQuit" class="ghost">回到标题</button>
+          </div>
+          <p class="keys small">温柔模式（危险变慢 15%）　<button id="btnEasy" class="mini">关</button></p>
+        </div>
+      </div>
+
+      <div id="screenEnd" class="screen">
+        <div class="end-block">
+          <p class="endtag" id="endTag"></p>
+          <h2 id="endTitle"></h2>
+          <p id="endText" class="endtext"></p>
+          <p id="endStat" class="endstat"></p>
+          <button id="btnEndBack" class="ghost">回到标题</button>
+        </div>
+      </div>
+
+      <div id="hint" class="hint"></div>
+    </div>
+  </div>
+</div>
+<script src="js/audio.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>
